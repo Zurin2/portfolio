@@ -1,36 +1,45 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Portfolio — Jose Miguel Esperat
 
-## Getting Started
+Personal portfolio built with **Next.js 16 + React 19 + Supabase**, deployed on **Vercel**.
+Replaces the retired PHP `Esperat_portfolio_cms`; sections ported from the
+[masterPortfolio](https://github.com/ashutosh1919/masterPortfolio) template.
 
-First, run the development server:
+## Stack
+
+- Next.js 16 (App Router, TypeScript, Cache Components) — all 5 routes prerender static
+- Supabase — `public.projects` table, public-read RLS, optional at build time
+- Tailwind CSS v4 — dark neutral base, violet accent (60-30-10)
+- Zero auth, zero middleware, zero client components
+
+## Setup
 
 ```bash
+npm install
+cp .env.example .env.local   # fill in Supabase URL + publishable key (optional)
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Without env vars the site runs on the static project list in `src/data/projects.ts`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Database
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Run `supabase/schema.sql` in the Supabase SQL Editor. It creates the `projects` table,
+enables public-read RLS, and seeds 9 projects. Keep `src/data/projects.ts` in sync with it.
 
-## Learn More
+## Verify
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npm run lint     # ESLint 9, zero warnings expected
+npm run build    # all routes must prerender static
+node "node_modules\next\dist\bin\next" start -p 3200
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Smoke: `/`, `/projects`, `/education`, `/contact` → 200; `/projects` renders one `<article>` row per project.
+Note: ports 3000/3100 are commonly occupied by other dev servers on this machine — use 3200+.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Deploy (not yet executed)
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+GitHub repo `Zurin2/portfolio` + Vercel production deploy are prepared but held pending
+explicit authorization. Follow the vault playbook:
+`gh repo create Zurin2/portfolio --source . --remote origin --push` → `vercel link` →
+env vars → `vercel --prod`.

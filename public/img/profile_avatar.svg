@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="50%" stop-color="#1e293b"/>
+      <stop offset="100%" stop-color="#0e7490"/>
+    </linearGradient>
+    <linearGradient id="skinGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f8d7b8"/>
+      <stop offset="100%" stop-color="#e0ac7e"/>
+    </linearGradient>
+    <linearGradient id="hairGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e1e24"/>
+      <stop offset="100%" stop-color="#0f0f12"/>
+    </linearGradient>
+    <linearGradient id="shirtGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#06b6d4"/>
+      <stop offset="100%" stop-color="#0284c7"/>
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="12" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="400" height="400" rx="200" fill="url(#bgGrad)"/>
+  <circle cx="200" cy="180" r="160" fill="none" stroke="#38bdf8" stroke-width="2" opacity="0.2"/>
+
+  <!-- Body / Hoodie -->
+  <path d="M110 370 C110 290 150 260 200 260 C250 260 290 290 290 370 Z" fill="url(#shirtGrad)"/>
+  <!-- Collar/Undershirt -->
+  <path d="M175 260 L200 295 L225 260 Z" fill="#0f172a"/>
+
+  <!-- Neck -->
+  <rect x="180" y="210" width="40" height="60" rx="10" fill="url(#skinGrad)"/>
+
+  <!-- Head -->
+  <ellipse cx="200" cy="185" rx="55" ry="65" fill="url(#skinGrad)"/>
+
+  <!-- Ears -->
+  <ellipse cx="145" cy="185" rx="10" ry="16" fill="url(#skinGrad)"/>
+  <ellipse cx="255" cy="185" rx="10" ry="16" fill="url(#skinGrad)"/>
+
+  <!-- Hair -->
+  <path d="M145 170 C140 115 170 100 205 100 C240 100 265 115 255 170 C250 145 240 135 220 135 C195 135 180 145 145 170 Z" fill="url(#hairGrad)"/>
+
+  <!-- Eyebrows -->
+  <path d="M165 160 Q180 155 190 162" stroke="#1e1e24" stroke-width="4" stroke-linecap="round" fill="none"/>
+  <path d="M210 162 Q220 155 235 160" stroke="#1e1e24" stroke-width="4" stroke-linecap="round" fill="none"/>
+
+  <!-- Eyes -->
+  <ellipse cx="178" cy="175" rx="5" ry="6" fill="#1e1e24"/>
+  <ellipse cx="222" cy="175" rx="5" ry="6" fill="#1e1e24"/>
+  <circle cx="176" cy="173" r="1.5" fill="#ffffff"/>
+  <circle cx="220" cy="173" r="1.5" fill="#ffffff"/>
+
+  <!-- Glasses -->
+  <rect x="160" y="165" width="34" height="22" rx="6" fill="none" stroke="#0ea5e9" stroke-width="3"/>
+  <rect x="206" y="165" width="34" height="22" rx="6" fill="none" stroke="#0ea5e9" stroke-width="3"/>
+  <line x1="194" y1="175" x2="206" y2="175" stroke="#0ea5e9" stroke-width="3"/>
+  <line x1="145" y1="172" x2="160" y2="172" stroke="#0ea5e9" stroke-width="2"/>
+  <line x1="240" y1="172" x2="255" y2="172" stroke="#0ea5e9" stroke-width="2"/>
+
+  <!-- Nose -->
+  <path d="M198 185 Q200 196 205 198" stroke="#c98a58" stroke-width="3" stroke-linecap="round" fill="none"/>
+
+  <!-- Smile -->
+  <path d="M185 215 Q200 228 215 215" stroke="#a35835" stroke-width="3" stroke-linecap="round" fill="none"/>
+
+  <!-- Tech code spark badge -->
+  <g transform="translate(280, 270)" filter="url(#glow)">
+    <circle cx="25" cy="25" r="28" fill="#0f172a" stroke="#06b6d4" stroke-width="2"/>
+    <text x="25" y="32" font-family="monospace" font-size="20" font-weight="bold" fill="#38bdf8" text-anchor="middle">&lt;/&gt;</text>
+  </g>
+</svg>

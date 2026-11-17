@@ -1,0 +1,38 @@
+export function Logo({ className }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 64 64"
+      role="img"
+      aria-label="jm — Jose Miguel Esperat"
+      className={className}
+    >
+      <rect x="1" y="1" width="62" height="62" rx="14" fill="#12141a" stroke="rgba(255,255,255,0.08)" strokeWidth="2" />
+      <circle cx="17" cy="15" r="2.6" fill="#a78bfa" />
+      <path
+        d="M17 22 V34 a5 5 0 0 1 -5 5 H9.5"
+        fill="none"
+        stroke="#ededed"
+        strokeWidth="4"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M27 39 V25 M27 31 a5.2 5.2 0 0 1 10 -1.5 a5.2 5.2 0 0 1 10 1.5 V39"
+        fill="none"
+        stroke="#ededed"
+        strokeWidth="4"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <circle cx="49" cy="49" r="10.5" fill="#0f172a" stroke="#a78bfa" strokeWidth="2" />
+      <path
+        d="M46.5 46 l-2.8 3 2.8 3 M51.5 46 l2.8 3 -2.8 3 M50 45.5 l-2 7"
+        fill="none"
+        stroke="#a78bfa"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
