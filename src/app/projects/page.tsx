@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { ExternalLinkIcon, GitHubIcon } from "@/components/Icons";
-import { projects } from "@/data/projects";
+import { ScreenshotSlot } from "@/components/ScreenshotSlot";
+import { projects, type Project } from "@/data/projects";
 
 export const metadata: Metadata = {
   title: "Projects — Jose Miguel Esperat",
@@ -8,8 +10,25 @@ export const metadata: Metadata = {
     "Full-stack systems, AI pipelines, and web apps built end to end — from PHP/MySQL to Next.js on Vercel.",
 };
 
-export default function ProjectsPage() {
+function screenshotLabel(project: Project): string {
+  if (project.liveUrl) {
+    try {
+      return new URL(project.liveUrl).hostname;
+    } catch {
+      // fall through
+    }
+  }
+  if (project.repoUrl) {
+    try {
+      return `${new URL(project.repoUrl).hostname}/${project.slug}`;
+    } catch {
+      // fall through
+    }
+  }
+  return `${project.slug}.local`;
+}
 
+export default function ProjectsPage() {
   return (
     <div className="mx-auto max-w-5xl px-6 pt-20 pb-24">
       <section className="pb-12">
@@ -24,48 +43,70 @@ export default function ProjectsPage() {
         {projects.map((project, index) => (
           <article
             key={project.slug}
-            className="group grid gap-3 py-8 transition-colors duration-150 ease-out hover:bg-white/[0.03] md:grid-cols-[64px_1fr_auto] md:gap-6"
+            className="group grid gap-5 py-8 transition-colors duration-150 ease-out hover:bg-white/[0.03] md:grid-cols-[280px_1fr] md:gap-8"
           >
-            <p className="font-mono text-sm text-muted/60 md:pt-1">
-              {String(index + 1).padStart(2, "0")}
-            </p>
+            {/* Screenshot slot */}
+            <div className="md:pt-1">
+              {project.screenshot ? (
+                <div className="relative aspect-video overflow-hidden rounded-lg border border-white/[0.08]">
+                  <Image
+                    src={project.screenshot}
+                    alt={`${project.title} screenshot`}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 280px"
+                    className="object-cover"
+                  />
+                </div>
+              ) : (
+                <ScreenshotSlot title={project.title} label={screenshotLabel(project)} />
+              )}
+            </div>
+
+            {/* Content */}
             <div className="flex flex-col gap-2">
-              <h2 className="font-display text-2xl tracking-tight">
-                {project.title}
-                {project.featured && (
-                  <span className="ml-3 align-middle font-mono text-xs text-accent">
-                    ★ featured
-                  </span>
-                )}
-              </h2>
+              <div className="flex items-start justify-between gap-4">
+                <div>
+                  <p className="font-mono text-xs text-muted/60">
+                    {String(index + 1).padStart(2, "0")}
+                  </p>
+                  <h2 className="mt-1 font-display text-2xl tracking-tight">
+                    {project.title}
+                    {project.featured && (
+                      <span className="ml-3 align-middle font-mono text-xs text-accent">
+                        ★ featured
+                      </span>
+                    )}
+                  </h2>
+                </div>
+                <div className="flex items-center gap-4 pt-1">
+                  {project.repoUrl && (
+                    <a
+                      href={project.repoUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`${project.title} source code`}
+                      className="text-muted transition-colors duration-150 ease-out hover:text-accent"
+                    >
+                      <GitHubIcon className="h-5 w-5" />
+                    </a>
+                  )}
+                  {project.liveUrl && (
+                    <a
+                      href={project.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`${project.title} live site`}
+                      className="text-muted transition-colors duration-150 ease-out hover:text-accent"
+                    >
+                      <ExternalLinkIcon className="h-5 w-5" />
+                    </a>
+                  )}
+                </div>
+              </div>
               <p className="max-w-2xl leading-relaxed text-muted">{project.description}</p>
-              <p className="font-mono text-xs text-muted/80">
+              <p className="mt-auto font-mono text-xs text-muted/80">
                 {project.tech.join(" · ")}
               </p>
-            </div>
-            <div className="flex items-start gap-4 md:pt-1">
-              {project.repoUrl && (
-                <a
-                  href={project.repoUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={`${project.title} source code`}
-                  className="text-muted transition-colors duration-150 ease-out group-hover:text-foreground hover:text-accent"
-                >
-                  <GitHubIcon className="h-5 w-5" />
-                </a>
-              )}
-              {project.liveUrl && (
-                <a
-                  href={project.liveUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={`${project.title} live site`}
-                  className="text-muted transition-colors duration-150 ease-out group-hover:text-foreground hover:text-accent"
-                >
-                  <ExternalLinkIcon className="h-5 w-5" />
-                </a>
-              )}
             </div>
           </article>
         ))}

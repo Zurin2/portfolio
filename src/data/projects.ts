@@ -6,6 +6,8 @@ export type Project = {
   tech: string[];
   repoUrl?: string;
   liveUrl?: string;
+  /** Path to a real screenshot (public/). Falls back to a browser-chrome placeholder. */
+  screenshot?: string;
   featured: boolean;
   sortOrder: number;
 };
@@ -16,7 +18,7 @@ export const projects: Project[] = [
     title: "Budget Buddy",
     description:
       "Personal finance tracker with per-category GCash/Cash wallets, budget-plan allocations with auto add/subtract, a one-click undo action log, and four page-scoped Gemini AI assistants.",
-    tech: ["Next.js", "React", "Supabase", "Tailwind CSS", "Gemini"],
+    tech: ["Next.js", "React", "Tailwind CSS", "Gemini"],
     repoUrl: "https://github.com/Zurin2/budget-buddy",
     liveUrl: "https://budget-buddy-ph.vercel.app",
     featured: true,
@@ -27,7 +29,7 @@ export const projects: Project[] = [
     title: "riff",
     description:
       "Voice-first note app: talk or type a messy ramble and it becomes a clean note with prioritized to-dos, filed under Work / School / Personal / Other. Server-side Gemini organizing brain, Web Speech API transcription.",
-    tech: ["Next.js", "React", "Supabase", "Gemini", "Web Speech API"],
+    tech: ["Next.js", "React", "Gemini", "Web Speech API"],
     repoUrl: "https://github.com/Zurin2/riff-note-ai",
     featured: true,
     sortOrder: 2,
@@ -57,7 +59,7 @@ export const projects: Project[] = [
     title: "CBC & CBBA Website",
     description:
       "Fully static public website for Cornerstone Baptist Church & Academy: pre-rendered routes, Supabase public-read content, zero auth or CMS.",
-    tech: ["Next.js", "Supabase", "Tailwind CSS"],
+    tech: ["Next.js", "Tailwind CSS"],
     featured: false,
     sortOrder: 5,
   },
