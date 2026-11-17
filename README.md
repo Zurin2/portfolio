@@ -37,9 +37,17 @@ node "node_modules\next\dist\bin\next" start -p 3200
 Smoke: `/`, `/projects`, `/education`, `/contact` → 200; `/projects` renders one `<article>` row per project.
 Note: ports 3000/3100 are commonly occupied by other dev servers on this machine — use 3200+.
 
-## Deploy (not yet executed)
+## Deploy
 
-GitHub repo `Zurin2/portfolio` + Vercel production deploy are prepared but held pending
-explicit authorization. Follow the vault playbook:
-`gh repo create Zurin2/portfolio --source . --remote origin --push` → `vercel link` →
-env vars → `vercel --prod`.
+- **Live:** https://jose-miguel-esperat.vercel.app (project `jose-miguel-esperat-s-projects/jose-miguel-esperat`)
+- **Repo:** https://github.com/Zurin2/portfolio (public, `master` branch)
+- Redeploy: `vercel --prod --yes` from the repo root
+- Push-to-deploy (GitHub → Vercel Git integration) is NOT yet connected — the Vercel GitHub
+  App lacks repo access. Enable via Vercel dashboard → Project → Settings → Git, or
+  `vercel git connect` once permissions are granted. Until then, deploy manually with the CLI.
+
+## Supabase (not yet wired)
+
+The site currently renders the static project list fallback. To go database-driven:
+create a Supabase project → run `supabase/schema.sql` in the SQL Editor →
+`vercel env add NEXT_PUBLIC_SUPABASE_URL` / `NEXT_PUBLIC_SUPABASE_ANON_KEY` → redeploy.
