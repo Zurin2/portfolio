@@ -15,7 +15,7 @@ export async function Footer() {
         <p>
           © {year} {profile.name}
         </p>
-        <p className="text-muted/60">Next.js · React · Supabase · Vercel</p>
+        <p className="text-muted/60">Next.js · React · Vercel</p>
       </div>
     </footer>
   );

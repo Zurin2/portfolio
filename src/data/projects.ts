@@ -1,7 +1,4 @@
-// Canonical project list. Serves two roles:
-// 1. Static fallback when Supabase env vars are absent or the query fails.
-// 2. Seed data for supabase/schema.sql (keep both in sync).
-
+// Canonical project list — the single source of truth for the Projects page.
 export type Project = {
   slug: string;
   title: string;
@@ -13,7 +10,7 @@ export type Project = {
   sortOrder: number;
 };
 
-export const fallbackProjects: Project[] = [
+export const projects: Project[] = [
   {
     slug: "budget-buddy",
     title: "Budget Buddy",

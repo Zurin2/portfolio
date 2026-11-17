@@ -1,15 +1,14 @@
 import type { Metadata } from "next";
 import { ExternalLinkIcon, GitHubIcon } from "@/components/Icons";
-import { getProjects } from "@/lib/data";
+import { projects } from "@/data/projects";
 
 export const metadata: Metadata = {
   title: "Projects — Jose Miguel Esperat",
   description:
-    "Full-stack systems, AI pipelines, and web apps built end to end — from PHP/MySQL to Next.js + Supabase on Vercel.",
+    "Full-stack systems, AI pipelines, and web apps built end to end — from PHP/MySQL to Next.js on Vercel.",
 };
 
-export default async function ProjectsPage() {
-  const projects = await getProjects();
+export default function ProjectsPage() {
 
   return (
     <div className="mx-auto max-w-5xl px-6 pt-20 pb-24">
@@ -17,8 +16,7 @@ export default async function ProjectsPage() {
         <h1 className="font-display text-4xl tracking-tight md:text-5xl">Projects</h1>
         <p className="mt-4 max-w-2xl leading-relaxed text-muted">
           Real systems built end to end — POS engines, inventory trackers, AI content
-          pipelines, and voice-first apps. Live data comes from Supabase; this list
-          degrades gracefully to a static snapshot.
+          pipelines, and voice-first apps.
         </p>
       </section>
 

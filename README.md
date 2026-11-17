@@ -1,30 +1,31 @@
 # Portfolio — Jose Miguel Esperat
 
-Personal portfolio built with **Next.js 16 + React 19 + Supabase**, deployed on **Vercel**.
+Personal portfolio built with **Next.js 16 + React 19**, deployed on **Vercel**.
 Replaces the retired PHP `Esperat_portfolio_cms`; sections ported from the
 [masterPortfolio](https://github.com/ashutosh1919/masterPortfolio) template.
+
+- **Live:** https://jose-miguel-esperat.vercel.app
+- **Repo:** https://github.com/Zurin2/portfolio
 
 ## Stack
 
 - Next.js 16 (App Router, TypeScript, Cache Components) — all 5 routes prerender static
-- Supabase — `public.projects` table, public-read RLS, optional at build time
 - Tailwind CSS v4 — dark neutral base, violet accent (60-30-10)
-- Zero auth, zero middleware, zero client components
+- GitHub public API — live repo/follower stats, fetched server-side, cached 1h
+- Zero auth, zero middleware, zero client components, zero backend services
 
 ## Setup
 
 ```bash
 npm install
-cp .env.example .env.local   # fill in Supabase URL + publishable key (optional)
 npm run dev
 ```
 
-Without env vars the site runs on the static project list in `src/data/projects.ts`.
+## Editing content
 
-## Database
-
-Run `supabase/schema.sql` in the Supabase SQL Editor. It creates the `projects` table,
-enables public-read RLS, and seeds 9 projects. Keep `src/data/projects.ts` in sync with it.
+- Identity, socials, skills, education: `src/data/profile.ts`
+- Projects: `src/data/projects.ts` — one entry per project, ordered by `sortOrder`
+- Changes ship on the next push + deploy
 
 ## Verify
 
@@ -39,15 +40,7 @@ Note: ports 3000/3100 are commonly occupied by other dev servers on this machine
 
 ## Deploy
 
-- **Live:** https://jose-miguel-esperat.vercel.app (project `jose-miguel-esperat-s-projects/jose-miguel-esperat`)
-- **Repo:** https://github.com/Zurin2/portfolio (public, `master` branch)
-- Redeploy: `vercel --prod --yes` from the repo root
-- Push-to-deploy (GitHub → Vercel Git integration) is NOT yet connected — the Vercel GitHub
-  App lacks repo access. Enable via Vercel dashboard → Project → Settings → Git, or
-  `vercel git connect` once permissions are granted. Until then, deploy manually with the CLI.
-
-## Supabase (not yet wired)
-
-The site currently renders the static project list fallback. To go database-driven:
-create a Supabase project → run `supabase/schema.sql` in the SQL Editor →
-`vercel env add NEXT_PUBLIC_SUPABASE_URL` / `NEXT_PUBLIC_SUPABASE_ANON_KEY` → redeploy.
+```bash
+git push          # if Git integration is connected in the Vercel dashboard
+vercel --prod --yes   # manual production deploy (currently the reliable path)
+```
