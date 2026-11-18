@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { ExternalLinkIcon, GitHubIcon } from "@/components/Icons";
+import { ScreenshotLightbox } from "@/components/ScreenshotLightbox";
 import { ScreenshotSlot } from "@/components/ScreenshotSlot";
 import { projects, type Project } from "@/data/projects";
 
@@ -48,15 +48,7 @@ export default function ProjectsPage() {
             {/* Screenshot slot */}
             <div className="md:pt-1">
               {project.screenshot ? (
-                <div className="relative aspect-video overflow-hidden rounded-lg border border-white/[0.08]">
-                  <Image
-                    src={project.screenshot}
-                    alt={`${project.title} screenshot`}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 280px"
-                    className="object-cover"
-                  />
-                </div>
+                <ScreenshotLightbox src={project.screenshot} title={project.title} />
               ) : (
                 <ScreenshotSlot title={project.title} label={screenshotLabel(project)} />
               )}
