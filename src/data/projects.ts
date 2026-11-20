@@ -73,7 +73,7 @@ export const projects: Project[] = [
     slug: "wmsu-administration",
     title: "WMSU Administration Page",
     description:
-      "Administration section of the Western Mindanao State University official website.",
+      "Administration page built for Western Mindanao State University during our internship — developed and delivered, but unpublished on the official site. Possible deployment in the future.",
     tech: ["PHP", "MySQL"],
     repoUrl: "https://github.com/Zurin2/WMSU-ADMINISTRATION-PAGE",
     screenshot: "/screenshots/wmsu-administration.jpg",
