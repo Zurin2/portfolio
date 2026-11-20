@@ -76,6 +76,7 @@ export const projects: Project[] = [
       "Administration section of the Western Mindanao State University official website.",
     tech: ["PHP", "MySQL"],
     repoUrl: "https://github.com/Zurin2/WMSU-ADMINISTRATION-PAGE",
+    screenshot: "/screenshots/wmsu-administration.jpg",
     featured: false,
     sortOrder: 6,
   },
