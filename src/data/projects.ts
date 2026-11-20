@@ -86,15 +86,18 @@ export const projects: Project[] = [
     description:
       "Turns one Shopee product photo and a pasted description into a 12–25s vertical marketing video with Taglish voiceover and burned-in captions — Gemini planning, FLUX.1/Wan2.2 generation on a free Colab T4, FFmpeg assembly, delivered via Telegram.",
     tech: ["Python", "Gemini", "FFmpeg", "Telegram API"],
+    screenshot: "/screenshots/shopee-ai-video-pipeline.jpg",
     featured: false,
     sortOrder: 7,
   },
   {
     slug: "office-memo-distribution",
     title: "Office Memo Distribution System",
-    description: "Internal memo routing and distribution tracking system.",
-    tech: ["Python"],
+    description:
+      "Audit-first memo management backend (MINDS) built with Django: memos move through a Draft → Published → Archived lifecycle, route to multiple departments, and track per-employee read acknowledgment — with controlled fields and history always preserved.",
+    tech: ["Python", "Django", "SQLite"],
     repoUrl: "https://github.com/Zurin2/Office-Memo-Distribution-System",
+    screenshot: "/screenshots/office-memo-distribution.jpg",
     featured: false,
     sortOrder: 8,
   },
